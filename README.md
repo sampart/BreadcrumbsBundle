@@ -53,7 +53,7 @@ In your application controller methods:
 
 and then in your template:
 
-    {{ wo_render_breadcrumbs() }
+    {{ wo_render_breadcrumbs() }}
 
 The last item in the breadcrumbs collection will automatically be rendered
 as plain text rather than a `<a>...</a>` tag.
