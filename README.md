@@ -47,8 +47,8 @@ In your application controller methods:
     public function yourAction()
     {
         $breadcrumbs = $this->get("white_october_breadcrumbs");
-        $bc->addItem("Home", $this->get("router")->generate("index"));
-        $bc->addItem("Register", $this->get("router")->generate("register"));
+        $breadcrumbs->addItem("Home", $this->get("router")->generate("index"));
+        $breadcrumbs->addItem("Register", $this->get("router")->generate("register"));
     }
 
 and then in your template:
