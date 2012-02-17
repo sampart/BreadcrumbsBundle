@@ -1,7 +1,7 @@
 {% if wo_breadcrumbs()|length %}
   <ul id="wo-breadcrumbs">
     {% for b in wo_breadcrumbs() %}
-      {% if b|wo_is_final_breadcrumb %}
+      {% if loop.last %}
         <li>{{ b.text }}</li>
       {% else %}
         <li><a href="{{ b.url }}">{{ b.text }}</a></li>
