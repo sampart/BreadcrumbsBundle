@@ -9,6 +9,10 @@ Installation
             git=git://github.com/whiteoctober/BreadcrumbsBundle.git
             target=/bundles/WhiteOctober/BreadcrumbsBundle
 
+    **Or** add the following to your composer.json:
+
+    	"whiteoctober/breadcrumbs-bundle": "master"
+
     Run the vendors script:
 
         ./bin/vendors install
@@ -61,7 +65,7 @@ as plain text rather than a `<a>...</a>` tag.
 Overriding the template
 =======================
 
-You can override the template used by copying the 
+You can override the template used by copying the
 `Resources/views/breadcrumbs.html.twig` file out of the bundle and placing it
 into `app/Resources/WhiteOctoberBreadcrumbsBundle/views`, then customising
 as you see fit.
