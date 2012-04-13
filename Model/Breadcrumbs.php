@@ -12,6 +12,8 @@ class Breadcrumbs implements \Iterator, \ArrayAccess, \Countable
     {
         $b = new SingleBreadcrumb($text, $url);
         $this->breadcrumbs[] = $b;
+        
+        return $this;
     }
 
     public function rewind()
