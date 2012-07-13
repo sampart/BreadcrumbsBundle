@@ -1,10 +1,10 @@
 {% if wo_breadcrumbs()|length %}
-  <ul id="wo-breadcrumbs">
-    {% for b in wo_breadcrumbs() %}
+  <ul id="{{ listId }}" class="{{ listClass }}">
+    {% for b in breadcrumbs %}
       {% if loop.last %}
-        <li>{{ b.text | trans(b.translationParameters) }}</li>
+        <li>{{ b.text | trans(b.translationParameters, translation_domain, locale) }}</li>
       {% else %}
-        <li><a href="{{ b.url }}">{{ b.text | trans(b.translationParameters) }}</a></li>
+        <li><a href="{{ b.url }}">{{ b.text | trans(b.translationParameters) }}</a> <span class="separator">{{ separator }}</span></li>
       {% endif %}
     {% endfor %}
   </ul>

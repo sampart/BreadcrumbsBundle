@@ -55,9 +55,9 @@ class BreadcrumbsExtension extends \Twig_Extension
      *
      * @return string
      */
-    public function renderBreadcrumbs()
+    public function renderBreadcrumbs(array $options = array())
     {
-        return $this->container->get("white_october_breadcrumbs.helper")->breadcrumbs();
+        return $this->container->get("white_october_breadcrumbs.helper")->breadcrumbs($options);
     }
 
     /**
