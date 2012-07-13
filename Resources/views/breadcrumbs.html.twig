@@ -2,9 +2,9 @@
   <ul id="wo-breadcrumbs">
     {% for b in wo_breadcrumbs() %}
       {% if loop.last %}
-        <li>{{ b.text }}</li>
+        <li>{{ b.text | trans(b.translationParameters) }}</li>
       {% else %}
-        <li><a href="{{ b.url }}">{{ b.text }}</a></li>
+        <li><a href="{{ b.url }}">{{ b.text | trans(b.translationParameters) }}</a></li>
       {% endif %}
     {% endfor %}
   </ul>
