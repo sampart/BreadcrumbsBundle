@@ -48,17 +48,35 @@ Usage
 
 In your application controller methods:
 
-    public function yourAction()
+    public function yourAction(User $user)
     {
         $breadcrumbs = $this->get("white_october_breadcrumbs");
+        // Simple example
         $breadcrumbs->addItem("Home", $this->get("router")->generate("index"));
-        $breadcrumbs->addItem("Register", $this->get("router")->generate("register"));
+
+        // Example without URL
+        $breadcrumbs->addItem("Some text without link");
+
+        // Example with parameter injected into translation "user.profile"
+        $breadcrumbs->addItem($txt, $url, array("%user%" => $user->getName()));
     }
 
 and then in your template:
 
     {{ wo_render_breadcrumbs() }}
 
+or overriding some default parameters:
+
+    {{ wo_render_breadcrumbs({separator: '>', listId: 'breadcrumbs'}) }}
+
+The following parameters can be overriden:
+
+    separator:          defaults to '/'
+    listId:             defaults to 'wo-breadcrumbs'
+    listClass:          defaults to 'breadcrumb'
+    locale:             defaults to null, so the default locale is used
+    translation_domain: defaults to null, so the default domain is used
+   
 The last item in the breadcrumbs collection will automatically be rendered
 as plain text rather than a `<a>...</a>` tag.
 
