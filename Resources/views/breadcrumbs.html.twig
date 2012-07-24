@@ -1,11 +1,15 @@
 {% if wo_breadcrumbs()|length %}
-  <ul id="wo-breadcrumbs">
-    {% for b in wo_breadcrumbs() %}
-      {% if loop.last %}
-        <li>{{ b.text | trans(b.translationParameters) }}</li>
-      {% else %}
-        <li><a href="{{ b.url }}">{{ b.text | trans(b.translationParameters) }}</a></li>
+  <ul id="{{ listId }}" class="{{ listClass }}">
+    {% for b in breadcrumbs %}
+      <li>
+        {% if b.url and not loop.last %}<a href="{{ b.url }}">{% endif %}
+        {{ b.text | trans(b.translationParameters, translation_domain, locale) }}
+        {% if b.url and not loop.last %}</a>{% endif %}
+        
+        {% if separator and not loop.last %}
+          <span class='separator'>{{ separator }}</span>
       {% endif %}
-    {% endfor %}
+    </li>
+    {% endfor %}  
   </ul>
 {% endif %}

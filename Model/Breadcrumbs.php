@@ -8,7 +8,7 @@ class Breadcrumbs implements \Iterator, \ArrayAccess, \Countable
 
     private $position = 0;
         
-    public function addItem($text, $url, array $translationParameters = array())
+    public function addItem($text, $url = "", array $translationParameters = array())
     {
         $b = new SingleBreadcrumb($text, $url, $translationParameters);
         $this->breadcrumbs[] = $b;

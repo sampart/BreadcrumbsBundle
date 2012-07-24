@@ -23,9 +23,12 @@ class BreadcrumbsHelper extends Helper
      * @param $name
      * @return string A HTML string
      */
-    public function breadcrumbs()
+    public function breadcrumbs(array $options = array())
     {
-        return $this->templating->render("WhiteOctoberBreadcrumbsBundle::breadcrumbs.html.twig");
+        return $this->templating->render(
+                "WhiteOctoberBreadcrumbsBundle::breadcrumbs.html.twig",
+                $this->resolveOptions($options)
+        );
     }
 
     /**
@@ -34,5 +37,19 @@ class BreadcrumbsHelper extends Helper
     public function getName()
     {
         return 'breadcrumbs';
+    }
+
+    private function resolveOptions(array $options = array())
+    {
+        return array_merge(
+                array(
+                        'breadcrumbs' => $this->breadcrumbs,
+                        'translation_domain' => null,
+                        'locale' => null,
+                        'listId' => 'wo-breadcrumbs',
+                        'listClass' => 'breadcrumb',
+                        'separator' => '/'
+                ), $options
+        );
     }
 }
