@@ -86,6 +86,34 @@ The following parameters can be overriden:
 The last item in the breadcrumbs collection will automatically be rendered
 as plain text rather than a `<a>...</a>` tag.
 
+Advanced Usage
+==============
+
+You can add a whole array ob objects at once
+
+    $breadcrumbs->addObject(array $objects, $text, $url, $translationParameters);
+
+    objects:            array ob objects
+    text:               name of object property or closure
+    url:                name of url property or closure
+
+Example:
+
+    $that = $this;
+    $breadcrumbs->addObjectArray($selectedPath, "name", function($object) use ($that) {
+        return $that->generateUrl('_object_index', array('slug' => $object->getSlug()));
+    });
+
+You can also add a tree path
+
+    $breadcrumbs->addObjectTree($object, $text, $url = "", $parent = 'parent', array $translationParameters = array(), $firstPosition = -1)
+
+    object:             object to start with
+    text:               name of object property or closure
+    url:                name of url property or closure
+    parent:             name of parent property or closure
+    firstPosition:      position to start inserting items (-1 = determine automatically)
+
 Overriding the template
 =======================
 
