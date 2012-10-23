@@ -16,6 +16,32 @@ class Breadcrumbs implements \Iterator, \ArrayAccess, \Countable
         return $this;
     }
 
+    public function addObjectArray(array $objects, $text, $url = "", array $translationParameters = array()) {
+        foreach($objects as $object) {
+            $text = $this->validateArgument($object, $text);
+            if ($url != "") {
+                $url = $this->validateArgument($object, $url);
+            }
+            $this->addItem($text, $url, $translationParameters);
+        }
+        return $this;
+    }
+
+    public function addObjectTree($object, $text, $url = "", $parent = 'parent', array $translationParameters = array()) {
+        $text = $this->validateArgument($object, $text);
+        if ($url != "") {
+            $url = $this->validateArgument($object, $url);
+        }
+        $parent = $this->validateArgument($object, $parent);
+        $b = new SingleBreadcrumb($text, $url, $translationParameters);
+        array_splice($this->breadcrumbs, 0, 0, $b);
+        $this->addItem($text, $url, $translationParameters);
+        if ($parent) {
+            $this->addObjectTree($parent, $text, $url, $parent, $translationParameters);
+        }
+        return $this;
+    }
+
     public function rewind()
     {
         return reset($this->breadcrumbs);
@@ -64,5 +90,17 @@ class Breadcrumbs implements \Iterator, \ArrayAccess, \Countable
     public function count()
     {
         return count($this->breadcrumbs);
+    }
+
+    private function validateArgument($object, $argument) {
+        if (is_callable($argument)) {
+            return $argument();
+        } else {
+            if (method_exists($object,'get' . $argument)) {
+                return call_user_func(array(&$object, "method"), 'get' . $argument);
+            } else {
+                throw new \InvalidArgumentException("Neither a method with the name get$argument() exists nor is it a valid callback function.");
+            }
+        }
     }
 }
