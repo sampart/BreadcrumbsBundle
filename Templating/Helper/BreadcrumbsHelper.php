@@ -48,7 +48,8 @@ class BreadcrumbsHelper extends Helper
                         'locale' => null,
                         'listId' => 'wo-breadcrumbs',
                         'listClass' => 'breadcrumb',
-                        'separator' => '/'
+                        'separator' => '/',
+                        'separatorClass' => 'separator',
                 ), $options
         );
     }

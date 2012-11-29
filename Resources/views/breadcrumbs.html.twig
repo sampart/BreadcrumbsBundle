@@ -7,7 +7,7 @@
         {% if b.url and not loop.last %}</a>{% endif %}
         
         {% if separator and not loop.last %}
-          <span class='separator'>{{ separator }}</span>
+          <span class='{{ separatorClass }}'>{{ separator }}</span>
       {% endif %}
     </li>
     {% endfor %}  
