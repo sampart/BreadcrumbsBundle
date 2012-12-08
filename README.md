@@ -9,21 +9,22 @@ Installation
             git=git://github.com/whiteoctober/BreadcrumbsBundle.git
             target=/bundles/WhiteOctober/BreadcrumbsBundle
 
-    **Or** add the following to your composer.json:
-
-      	"whiteoctober/breadcrumbs-bundle": "master"
-
-    If you are using Symfony 2.1, you will need to use the ``2.1`` branch:
-
-        "whiteoctober/breadcrumbs-bundle": "2.1.x-dev"
-
-    or the appropriate ``version=2.1`` line in your ``deps`` file.
-
-    Run the vendors script:
+    and run the vendors script:
 
         ./bin/vendors install
 
-  2. Add the WhiteOctober namespace to your autoloader:
+    **Or** add the following to your `composer.json`:
+
+        "whiteoctober/breadcrumbs-bundle": "master"
+
+    and run:
+
+        php composer.phar install
+
+    The bundle is compatible with Symfony 2.0 upwards.
+
+
+  2. If you're not using Composer, add the WhiteOctober namespace to your autoloader:
 
         // app/autoload.php
         $loader->registerNamespaces(array(
