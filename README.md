@@ -48,7 +48,7 @@ Installation
         white_october_breadcrumbs: ~
 
 
-That's  it for configuration.
+That's  it for basic configuration.
 
 Usage
 =====
@@ -72,25 +72,32 @@ and then in your template:
 
     {{ wo_render_breadcrumbs() }}
 
-or overriding some default parameters:
-
-    {{ wo_render_breadcrumbs({separator: '>', listId: 'breadcrumbs'}) }}
-
-The following parameters can be overriden:
-
-    separator:          defaults to '/'
-    listId:             defaults to 'wo-breadcrumbs'
-    listClass:          defaults to 'breadcrumb'
-    locale:             defaults to null, so the default locale is used
-    translation_domain: defaults to null, so the default domain is used
-   
 The last item in the breadcrumbs collection will automatically be rendered
 as plain text rather than a `<a>...</a>` tag.
+
+Configuration
+=============
+
+The following parameters can be overriden in your `config.yml` or similar:
+
+    white_october_breadcrumbs:
+        separator:          defaults to '/'
+        separatorClass:     defaults to 'separator'
+        listId:             defaults to 'wo-breadcrumbs'
+        listClass:          defaults to 'breadcrumb'
+        itemClass:          defaults to ''
+        locale:             defaults to null, so the default locale is used
+        translation_domain: defaults to null, so the default domain is used
+
+These can also be passed as parameters in the view when rendering the
+breadcrumbs - for example:
+   
+    {{ wo_render_breadcrumbs({separator: '>', listId: 'breadcrumbs'}) }}
 
 Advanced Usage
 ==============
 
-You can add a whole array ob objects at once
+You can add a whole array of objects at once
 
     $breadcrumbs->addObject(array $objects, $text, $url, $translationParameters);
 
