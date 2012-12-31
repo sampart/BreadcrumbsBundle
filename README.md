@@ -15,7 +15,7 @@ Installation
 
     **Or** add the following to your `composer.json`:
 
-        "whiteoctober/breadcrumbs-bundle": "master"
+        "whiteoctober/breadcrumbs-bundle": "dev-master"
 
     and run:
 
