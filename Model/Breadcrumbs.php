@@ -26,6 +26,14 @@ class Breadcrumbs implements \Iterator, \ArrayAccess, \Countable
             }
             $this->addItem($itemText, $itemUrl, $translationParameters);
         }
+
+        return $this;
+    }
+
+    public function clear()
+    {
+        $this->breadcrumbs = array();
+
         return $this;
     }
 

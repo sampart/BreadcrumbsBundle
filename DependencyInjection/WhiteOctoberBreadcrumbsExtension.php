@@ -12,8 +12,8 @@ class WhiteOctoberBreadcrumbsExtension extends Extension
     /**
      * Loads our service, accessible as "white_october_breadcrumbs"
      *
-     * @param array $configs
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param  array            $configs
+     * @param  ContainerBuilder $container
      * @return void
      */
     public function load(array $configs, ContainerBuilder $container)

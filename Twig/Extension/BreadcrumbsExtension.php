@@ -4,10 +4,10 @@ namespace WhiteOctober\BreadcrumbsBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Templating\Helper\Helper;
+use WhiteOctober\BreadcrumbsBundle\Model\SingleBreadcrumb;
 
 /**
  * Provides an extension for Twig to output breadcrumbs
- *
  */
 class BreadcrumbsExtension extends \Twig_Extension
 {
@@ -33,6 +33,9 @@ class BreadcrumbsExtension extends \Twig_Extension
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFilters()
     {
         return array(
@@ -42,7 +45,7 @@ class BreadcrumbsExtension extends \Twig_Extension
 
     /**
      * Returns the breadcrumbs object
-     * 
+     *
      * @return \WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs
      */
     public function getBreadcrumbs()
@@ -53,6 +56,7 @@ class BreadcrumbsExtension extends \Twig_Extension
     /**
      * Renders the breadcrumbs in a list
      *
+     * @param  array  $options
      * @return string
      */
     public function renderBreadcrumbs(array $options = array())
@@ -63,10 +67,10 @@ class BreadcrumbsExtension extends \Twig_Extension
     /**
      * Checks if this breadcrumb is the last one in the collection
      *
-     * @param $crumb
+     * @param  SingleBreadcrumb $crumb
      * @return boolean
      */
-    public function isLastBreadcrumb($crumb)
+    public function isLastBreadcrumb(SingleBreadcrumb $crumb)
     {
         return ($this->breadcrumbs[count($this->breadcrumbs)-1] === $crumb);
     }
