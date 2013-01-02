@@ -1,6 +1,9 @@
 Installation
 ============
 
+**NB** There is now no need to use the 2.1 branch when installing; the bundle
+is compatible with 2.0 upwards.  Use the master branch instead.
+
   1. Add this bundle to your vendor/ dir using the vendors script:
 
     Add the following lines in your ``deps`` file:
