@@ -104,9 +104,9 @@ You can add a whole array of objects at once
 
     $breadcrumbs->addObject(array $objects, $text, $url, $translationParameters);
 
-    objects:            array ob objects
+    objects:            array of objects
     text:               name of object property or closure
-    url:                name of url property or closure
+    url:                name of URL property or closure
 
 Example:
 
@@ -121,7 +121,7 @@ You can also add a tree path
 
     object:             object to start with
     text:               name of object property or closure
-    url:                name of url property or closure
+    url:                name of URL property or closure
     parent:             name of parent property or closure
     firstPosition:      position to start inserting items (-1 = determine automatically)
 
