@@ -1,8 +1,9 @@
 {
     "name": "whiteoctober/breadcrumbs-bundle",
     "type": "symfony-bundle",
+    "license": "MIT",
     "description": "A small breadcrumbs bundle for Symfony2",
-    "keywords": ["breadcrumbs"],
+    "keywords": ["breadcrumbs", "symfony"],
     "homepage": "https://github.com/whiteoctober/BreadcrumbsBundle",
     "authors": [
         {
