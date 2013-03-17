@@ -102,7 +102,7 @@ Advanced Usage
 
 You can add a whole array of objects at once
 
-    $breadcrumbs->addObject(array $objects, $text, $url, $translationParameters);
+    $breadcrumbs->addObjectArray(array $objects, $text, $url, $translationParameters);
 
     objects:            array of objects
     text:               name of object property or closure
