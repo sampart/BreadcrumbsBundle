@@ -6,7 +6,7 @@
         <span itemprop="title">{{- b.text | trans(b.translationParameters, translation_domain, locale) -}}</span>
         {% if b.url and not loop.last %}</a>{% endif %}
 
-        {% if separator and not loop.last %}
+        {% if separator is not null and not loop.last %}
           <span class='{{ separatorClass }}'>{{ separator }}</span>
       {% endif %}
     </li>
