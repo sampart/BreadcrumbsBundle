@@ -1,15 +1,17 @@
 {% if wo_breadcrumbs()|length %}
-  <ul id="{{ listId }}" class="{{ listClass }}" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-    {% for b in breadcrumbs %}
-      <li{% if itemClass is defined and itemClass|length %} class="{{ itemClass }}"{% endif %}{% if not(loop.first) %} itemprop="child"{% endif %}>
-        {% if b.url and not loop.last %}<a href="{{ b.url }}" itemprop="url">{% endif %}
-        <span itemprop="title">{{- b.text | trans(b.translationParameters, translation_domain, locale) -}}</span>
-        {% if b.url and not loop.last %}</a>{% endif %}
-
-        {% if separator is not null and not loop.last %}
-          <span class='{{ separatorClass }}'>{{ separator }}</span>
-      {% endif %}
-    </li>
-    {% endfor %}
-  </ul>
+  {% spaceless %}
+    <ul id="{{ listId }}" class="{{ listClass }}" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+      {% for b in breadcrumbs %}
+        <li{% if itemClass is defined and itemClass|length %} class="{{ itemClass }}"{% endif %}{% if not(loop.first) %} itemprop="child"{% endif %}>
+          {% if b.url and not loop.last %}<a href="{{ b.url }}" itemprop="url">{% endif %}
+          <span itemprop="title">{{- b.text | trans(b.translationParameters, translation_domain, locale) -}}</span>
+          {% if b.url and not loop.last %}</a>{% endif %}
+  
+          {% if separator is not null and not loop.last %}
+            <span class='{{ separatorClass }}'>{{ separator }}</span>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  {% endspaceless %}
 {% endif %}
