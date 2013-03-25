@@ -24,6 +24,7 @@ class Configuration implements ConfigurationInterface
                 scalarNode("listId")->defaultValue("wo-breadcrumbs")->end()->
                 scalarNode("listClass")->defaultValue("breadcrumb")->end()->
                 scalarNode("itemClass")->defaultValue("")->end()->
+                scalarNode("linkRel")->defaultValue("")->end()->
                 scalarNode("locale")->defaultNull()->end()->
                 scalarNode("translation_domain")->defaultNull()->end()->
             end()
