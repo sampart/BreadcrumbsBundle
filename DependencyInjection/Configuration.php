@@ -26,6 +26,7 @@ class Configuration implements ConfigurationInterface
                 scalarNode("itemClass")->defaultValue("")->end()->
                 scalarNode("locale")->defaultNull()->end()->
                 scalarNode("translation_domain")->defaultNull()->end()->
+                scalarNode("viewTemplate")->defaultValue("WhiteOctoberBreadcrumbsBundle::breadcrumbs.html.twig")->end()->
             end()
         ;
 

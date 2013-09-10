@@ -32,9 +32,11 @@ class BreadcrumbsHelper extends Helper
      */
     public function breadcrumbs(array $options = array())
     {
+        $options = $this->resolveOptions($options);
+
         return $this->templating->render(
-                "WhiteOctoberBreadcrumbsBundle::breadcrumbs.html.twig",
-                $this->resolveOptions($options)
+                $options["viewTemplate"],
+                $options
         );
     }
 
