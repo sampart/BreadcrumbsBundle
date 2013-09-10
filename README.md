@@ -91,10 +91,11 @@ The following parameters can be overriden in your `config.yml` or similar:
         itemClass:          defaults to ''
         locale:             defaults to null, so the default locale is used
         translation_domain: defaults to null, so the default domain is used
+        viewTemplate:       defaults to "WhiteOctoberBreadcrumbsBundle::breadcrumbs.html.twig"
 
 These can also be passed as parameters in the view when rendering the
 breadcrumbs - for example:
-   
+
     {{ wo_render_breadcrumbs({separator: '>', listId: 'breadcrumbs'}) }}
 
 Advanced Usage
@@ -128,7 +129,13 @@ You can also add a tree path
 Overriding the template
 =======================
 
-You can override the template used by copying the
-`Resources/views/breadcrumbs.html.twig` file out of the bundle and placing it
-into `app/Resources/WhiteOctoberBreadcrumbsBundle/views`, then customising
-as you see fit.
+There are two methods of doing this.
+
+  1. You can override the template used by copying the
+     `Resources/views/breadcrumbs.html.twig` file out of the bundle and placing it
+     into `app/Resources/WhiteOctoberBreadcrumbsBundle/views`, then customising
+     as you see fit.
+
+  2. Use the `viewTemplate` configuration parameter:
+
+        {{ wo_render_breadcrumbs({ viewTemplate: "YourOwnBundle::yourBreadcrumbs.html.twig" }) }}
