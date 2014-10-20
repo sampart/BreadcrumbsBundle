@@ -78,6 +78,26 @@ and then in your template:
 The last item in the breadcrumbs collection will automatically be rendered
 as plain text rather than a `<a>...</a>` tag.
 
+The `addItem()` method adds an item to the *end* of the breadcrumbs collection.
+You can use the `prependItem()` method to add an item to the *beginning* of
+the breadcrumbs collection.  This is handy when used in conjunction with
+hierarchical data (e.g. Doctrine Nested-Set).  This example uses categories in
+a product catalog:
+
+    public function yourAction(Category $category)
+    {
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+
+        $node = $category;
+
+        while ($node) {
+            $breadcrumbs->prependItem($node->getName(), "<category URL>");
+
+            $node = $node->getParent();
+        }
+    }
+
+
 Configuration
 =============
 

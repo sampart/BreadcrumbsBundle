@@ -16,6 +16,14 @@ class Breadcrumbs implements \Iterator, \ArrayAccess, \Countable
         return $this;
     }
 
+    public function prependItem($text, $url = "", array $translationParameters = array())
+    {
+        $b = new SingleBreadcrumb($text, $url, $translationParameters);
+        array_unshift($this->breadcrumbs, $b);
+
+        return $this;
+    }
+
     public function addObjectArray(array $objects, $text, $url = "", array $translationParameters = array()) {
         foreach($objects as $object) {
             $itemText = $this->validateArgument($object, $text);
