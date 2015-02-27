@@ -6,7 +6,11 @@
     <services>
 
         <!-- Our service, for controllers -->
-        <service id="white_october_breadcrumbs" class="WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs"></service>
+        <service id="white_october_breadcrumbs" class="WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs">
+            <call method="setRouter">
+                <argument type="service" id="router" />
+            </call>
+        </service>
 
         <!-- Templating helper -->
         <service id="white_october_breadcrumbs.helper" class="WhiteOctober\BreadcrumbsBundle\Templating\Helper\BreadcrumbsHelper">

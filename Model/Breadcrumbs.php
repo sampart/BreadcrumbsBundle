@@ -2,11 +2,18 @@
 
 namespace WhiteOctober\BreadcrumbsBundle\Model;
 
+use Symfony\Component\Routing\RouterInterface;
+
 class Breadcrumbs implements \Iterator, \ArrayAccess, \Countable
 {
     private $breadcrumbs = array();
 
     private $position = 0;
+
+    /**
+     * @var RouterInterface
+     */
+    private $router;
 
     public function addItem($text, $url = "", array $translationParameters = array())
     {
@@ -22,6 +29,20 @@ class Breadcrumbs implements \Iterator, \ArrayAccess, \Countable
         array_unshift($this->breadcrumbs, $b);
 
         return $this;
+    }
+
+    public function addRouteItem($text, $route, array $parameters = array(), $referenceType = RouterInterface::ABSOLUTE_PATH, array $translationParameters = array())
+    {
+        $url = $this->router->generate($route, $parameters, $referenceType);
+
+        return $this->addItem($text, $url, $translationParameters);
+    }
+
+    public function prependRouteItem($text, $route, array $parameters = array(), $referenceType = RouterInterface::ABSOLUTE_PATH, array $translationParameters = array())
+    {
+        $url = $this->router->generate($route, $parameters, $referenceType);
+
+        return $this->prependItem($text, $url, $translationParameters);
     }
 
     public function addObjectArray(array $objects, $text, $url = "", array $translationParameters = array()) {
@@ -62,6 +83,14 @@ class Breadcrumbs implements \Iterator, \ArrayAccess, \Countable
             $this->addObjectTree($itemParent, $text, $url, $parent, $translationParameters, $firstPosition);
         }
         return $this;
+    }
+
+    /**
+     * @param RouterInterface $router
+     */
+    public function setRouter(RouterInterface $router)
+    {
+        $this->router = $router;
     }
 
     public function rewind()
