@@ -115,6 +115,27 @@ public function yourAction(Category $category)
 }
 ```
 
+If you do not want generating url manually, you can easily to add breadcrumbs items
+passing only route name with required parameters using `addRouteItem()` and `prependRouteItem()` methods:
+
+``` php
+public function yourAction()
+{
+    $breadcrumbs = $this->get("white_october_breadcrumbs");
+    
+    // Pass "_demo" route name without any parameters
+    $breadcrumbs->addRouteItem("Demo", "_demo");
+
+    // Pass "_demo_hello" route name with parameters
+    $breadcrumbs->addRouteItem("Hello Breadcrumbs", "_demo_hello", array(
+        'name' => 'Breadcrumbs',
+    ));
+
+    // Add "homepage" route link to begin of breadcrumbs
+    $breadcrumbs->prependRouteItem("Home", "homepage");
+}
+```
+
 Configuration
 =============
 
