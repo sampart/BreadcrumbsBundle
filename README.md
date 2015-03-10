@@ -115,8 +115,9 @@ public function yourAction(Category $category)
 }
 ```
 
-If you do not want generating url manually, you can easily to add breadcrumbs items
-passing only route name with required parameters using `addRouteItem()` and `prependRouteItem()` methods:
+If you do not want to generate a URL manually, you can easily add breadcrumb items
+passing only the route name with any required parameters, using the `addRouteItem()`
+and `prependRouteItem()` methods:
 
 ``` php
 public function yourAction()
