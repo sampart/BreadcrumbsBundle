@@ -146,12 +146,15 @@ class Breadcrumbs implements \Iterator, \ArrayAccess, \Countable
     private function validateArgument($object, $argument) {
         if (is_callable($argument)) {
             return $argument($object);
-        } else {
-            if (method_exists($object,'get' . $argument)) {
-                return call_user_func(array(&$object,  'get' . $argument), 'get' . $argument);
-            } else {
-                throw new \InvalidArgumentException("Neither a method with the name get$argument() exists nor is it a valid callback function.");
-            }
         }
+
+        $getter = 'get' . ucfirst($argument);
+        if (method_exists($object, $getter)) {
+            return call_user_func(array(&$object, $getter), $getter);
+        }
+
+        throw new \InvalidArgumentException(sprintf(
+            'Neither a valid callback function passed nor a method with the name %s() is exists', $getter
+        ));
     }
 }
