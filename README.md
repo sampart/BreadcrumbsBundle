@@ -140,19 +140,20 @@ public function yourAction()
 Configuration
 =============
 
-The following parameters can be overriden in your `config.yml` or similar:
+The following *default* parameters can be overriden in your `config.yml` or similar:
 
 ``` yaml
+# app/config.yml
 white_october_breadcrumbs:
-    separator:          defaults to '/'
-    separatorClass:     defaults to 'separator'
-    listId:             defaults to 'wo-breadcrumbs'
-    listClass:          defaults to 'breadcrumb'
-    itemClass:          defaults to ''
-    linkRel:            defaults to ''
-    locale:             defaults to null, so the default locale is used
-    translation_domain: defaults to null, so the default domain is used
-    viewTemplate:       defaults to "WhiteOctoberBreadcrumbsBundle::breadcrumbs.html.twig"
+    separator:          '/'
+    separatorClass:     'separator'
+    listId:             'wo-breadcrumbs'
+    listClass:          'breadcrumb'
+    itemClass:          ''
+    linkRel:            ''
+    locale:             ~ # defaults to null, so the default locale is used
+    translation_domain: ~ # defaults to null, so the default domain is used
+    viewTemplate:       'WhiteOctoberBreadcrumbsBundle::breadcrumbs.html.twig'
 ```
 
 These can also be passed as parameters in the view when rendering the
