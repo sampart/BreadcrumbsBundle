@@ -36,7 +36,9 @@ class BreadcrumbsHelper extends Helper
 
         return $this->templating->render(
                 $options["viewTemplate"],
-                $options
+                array_merge(array(
+                    'namespace' => Breadcrumbs::DEFAULT_NAMESPACE,
+                ), $options)
         );
     }
 
