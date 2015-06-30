@@ -9,7 +9,7 @@ class Breadcrumbs implements \Iterator, \ArrayAccess, \Countable
     const DEFAULT_NAMESPACE = "default";
 
     private $breadcrumbs = array(
-        "default" => array()
+        self::DEFAULT_NAMESPACE => array()
     );
 
     /**
