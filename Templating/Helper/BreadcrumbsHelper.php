@@ -34,11 +34,17 @@ class BreadcrumbsHelper extends Helper
     {
         $options = $this->resolveOptions($options);
 
+        // Handle namespace
+        $options = array_merge(array(
+            'namespace' => Breadcrumbs::DEFAULT_NAMESPACE,
+        ), $options);
+        if (!isset($this->breadcrumbs[$options['namespace']])) {
+            throw new \InvalidArgumentException("The breadcrumb namespace '" . $options['namespace'] . "' does not exist");
+        }
+
         return $this->templating->render(
-                $options["viewTemplate"],
-                array_merge(array(
-                    'namespace' => Breadcrumbs::DEFAULT_NAMESPACE,
-                ), $options)
+            $options["viewTemplate"],
+            $options
         );
     }
 
