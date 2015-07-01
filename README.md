@@ -1,55 +1,26 @@
 Installation
 ============
 
-**NB** There is now no need to use the 2.1 branch when installing; the bundle
-is compatible with 2.0 upwards.  Use the master branch instead.
+> **NOTE:** The bundle is compatible with Symfony `2.0` upwards.
 
-1. Add this bundle to your `vendor/` dir using the vendors script:
-
-    Add the following lines in your ``deps`` file:
-    
-    ``` ini
-    [WhiteOctoberBreadcrumbsBundle]
-        git=git://github.com/whiteoctober/BreadcrumbsBundle.git
-        target=/bundles/WhiteOctober/BreadcrumbsBundle
-    ```
-    
-    and run the vendors script:
-    
-    ``` bash
-    ./bin/vendors install
-    ```
-    
-    **Or** add the following to your `composer.json`:
+1. Download this bundle to your project first. The preferred way to do it is
+    to use [Composer](https://getcomposer.org/) package manager:
     
     ``` json
-    "whiteoctober/breadcrumbs-bundle": "dev-master"
+    $ composer require whiteoctober/breadcrumbs-bundle
     ```
     
-    and run:
+    > **NOTE:** If you're not having installed `Composer` yet, check the [installation guide][2].
+
+    > **NOTE:** If you're not using `Composer`, add the `BreadcrumbsBundle` to your autoloader manually.
+
+2. Add this bundle to your application's kernel:
     
-    ``` bash
-    php composer.phar install
-    ```
-    
-    The bundle is compatible with Symfony 2.0 upwards.
-
-2. If you're not using Composer, add the WhiteOctober namespace to your autoloader:
-
-    ``` php
-    // app/autoload.php
-    $loader->registerNamespaces(array(
-        'WhiteOctober' => __DIR__.'/../vendor/bundles',
-    ));
-    ```
-
-3. Add this bundle to your application's kernel:
-
     ``` php
     // app/AppKernel.php
     public function registerBundles()
     {
-        return array(
+        $bundles = array(
             // ...
             new WhiteOctober\BreadcrumbsBundle\WhiteOctoberBreadcrumbsBundle(),
             // ...
@@ -57,13 +28,14 @@ is compatible with 2.0 upwards.  Use the master branch instead.
     }
     ```
 
-4. Configure the `white_october_breadcrumbs` service in your config.yml:
-
+3. Configure the bundle in your config:
+    
     ``` yaml
+    # app/config/config.yml
     white_october_breadcrumbs: ~
     ```
     
-    That's  it for basic configuration.
+That's  it for basic configuration. For more options check [Configuration](#configuration) section.
 
 Usage
 =====
@@ -143,7 +115,7 @@ Configuration
 The following *default* parameters can be overriden in your `config.yml` or similar:
 
 ``` yaml
-# app/config.yml
+# app/config/config.yml
 white_october_breadcrumbs:
     separator:          '/'
     separatorClass:     'separator'
@@ -220,3 +192,4 @@ There are two methods of doing this.
 
 
 [1]: http://symfony.com/doc/current/book/templating.html#overriding-bundle-templates
+[2]: https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx
