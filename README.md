@@ -162,6 +162,35 @@ breadcrumbs - for example:
 {{ wo_render_breadcrumbs({separator: '>', listId: 'breadcrumbs'}) }}
 ```
 
+> **NOTE:** If you need more than one breadcrumbs on the same page you could to use namespaces.
+By default, breadcrumbs use `default` namespace, but you should to add more.
+To add breadcrumbs to your custom namespace use `addNamespaceItem` / `prependNamespaceItem`
+or `addNamespaceRouteItem` / `prependNamespaceRouteItem` methods respectively, for example:
+
+``` php
+public function yourAction(User $user)
+{
+    $breadcrumbs = $this->get("white_october_breadcrumbs");
+    // Simple example
+    $breadcrumbs->prependNamespaceItem("subsection", "Home", $this->get("router")->generate("index"));
+
+    // Example without URL
+    $breadcrumbs->addNamespaceItem("subsection", "Some text without link");
+
+    // Example with parameter injected into translation "user.profile"
+    $breadcrumbs->addNamespaceItem("subsection", $txt, $url, array("%user%" => $user->getName()));
+    
+    // Example with route name with required parameters
+    $breadcrumbs->addNamespaceRouteItem("subsection", $user->getName(), "user_show", ["id" => $user->getId()]);
+}
+```
+
+To render `subsection` breadcrumbs in your templates, specify this namespace in options:
+
+``` jinja
+{{ wo_render_breadcrumbs({namespace: "subsection"}) }}
+```
+
 Advanced Usage
 ==============
 
@@ -199,6 +228,9 @@ url:                name of URL property or closure
 parent:             name of parent property or closure
 firstPosition:      position to start inserting items (-1 = determine automatically)
 ```
+
+> **NOTE:** You can use `addNamespaceObjectArray` and `addNamespaceObjectTree` respectively
+for work with multiple breadcrumbs on the same page.
 
 Overriding the template
 =======================
