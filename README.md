@@ -208,10 +208,14 @@ There are two methods of doing this.
 1. You can override the template used by copying the
     `Resources/views/breadcrumbs.html.twig` file out of the bundle and placing it
     into `app/Resources/WhiteOctoberBreadcrumbsBundle/views`, then customising
-    as you see fit.
+    as you see fit. Check the [Overriding bundle templates][1] documentation section
+    for more information.
 
 2. Use the `viewTemplate` configuration parameter:
     
     ``` jinja
     {{ wo_render_breadcrumbs({ viewTemplate: "YourOwnBundle::yourBreadcrumbs.html.twig" }) }}
     ```
+
+
+[1]: http://symfony.com/doc/current/book/templating.html#overriding-bundle-templates
