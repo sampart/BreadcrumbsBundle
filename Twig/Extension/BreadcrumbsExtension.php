@@ -47,11 +47,12 @@ class BreadcrumbsExtension extends \Twig_Extension
     /**
      * Returns the breadcrumbs object
      *
+     * @param string $namespace
      * @return \WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs
      */
-    public function getBreadcrumbs()
+    public function getBreadcrumbs($namespace = Breadcrumbs::DEFAULT_NAMESPACE)
     {
-        return $this->breadcrumbs;
+        return $this->breadcrumbs->getNamespaceBreadcrumbs($namespace);
     }
 
     /**
@@ -74,9 +75,9 @@ class BreadcrumbsExtension extends \Twig_Extension
      */
     public function isLastBreadcrumb(SingleBreadcrumb $crumb, $namespace = Breadcrumbs::DEFAULT_NAMESPACE)
     {
-        $namespaceCrumbs = $this->breadcrumbs[$namespace];
+        $offset = $this->breadcrumbs->count($namespace) - 1;
 
-        return ($namespaceCrumbs[count($namespaceCrumbs)-1] === $crumb);
+        return $crumb === $this->breadcrumbs->offsetGet($offset, $namespace);
     }
 
     /**
