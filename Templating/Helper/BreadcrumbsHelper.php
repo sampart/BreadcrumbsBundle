@@ -8,39 +8,54 @@ use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 
 class BreadcrumbsHelper extends Helper
 {
+    /**
+     * @var EngineInterface
+     */
     protected $templating;
+
+    /**
+     * @var Breadcrumbs
+     */
     protected $breadcrumbs;
+
+    /**
+     * @var array The default options load from config file
+     */
     protected $options = array();
 
     /**
      * @param \Symfony\Component\Templating\EngineInterface $templating
      * @param \WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs $breadcrumbs
-     * @param array $options
+     * @param array $options The default options load from config file
      */
     public function __construct(EngineInterface $templating, Breadcrumbs $breadcrumbs, array $options)
     {
         $this->templating  = $templating;
         $this->breadcrumbs = $breadcrumbs;
-        $this->options = $options;
+        $this->options = array_merge($options, array(
+            'namespace' => Breadcrumbs::DEFAULT_NAMESPACE, // inject default namespace to options
+        ));
     }
 
     /**
-     * Returns the HTML for the breadcrumbs
+     * Returns the HTML for the namespace breadcrumbs
      *
-     * @param $options
+     * @param array $options The user-supplied options from the view
      * @return string A HTML string
      */
     public function breadcrumbs(array $options = array())
     {
         $options = $this->resolveOptions($options);
 
-        // Handle namespace
-        $options = array_merge(array(
-            'namespace' => Breadcrumbs::DEFAULT_NAMESPACE,
-        ), $options);
+        // Check whether requested namespace breadcrumbs is exists
         if (!isset($this->breadcrumbs[$options['namespace']])) {
-            throw new \InvalidArgumentException("The breadcrumb namespace '" . $options['namespace'] . "' does not exist");
+            throw new \InvalidArgumentException(sprintf(
+                'The breadcrumb namespace "%s" does not exist', $options['namespace']
+            ));
         }
+
+        // Assign namespace breadcrumbs
+        $options["breadcrumbs"] = $this->breadcrumbs[$options['namespace']];
 
         return $this->templating->render(
             $options["viewTemplate"],
@@ -49,6 +64,7 @@ class BreadcrumbsHelper extends Helper
     }
 
     /**
+     * {@inheritdoc}
      * @codeCoverageIgnore
      */
     public function getName()
@@ -60,12 +76,11 @@ class BreadcrumbsHelper extends Helper
      * Merges user-supplied options from the view
      * with base config values
      *
-     * @param array $options
+     * @param array $options The user-supplied options from the view
      * @return array
      */
     private function resolveOptions(array $options = array())
     {
-        $this->options["breadcrumbs"] = $this->breadcrumbs;
         return array_merge($this->options, $options);
     }
 }
