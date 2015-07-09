@@ -162,8 +162,8 @@ breadcrumbs - for example:
 {{ wo_render_breadcrumbs({separator: '>', listId: 'breadcrumbs'}) }}
 ```
 
-> **NOTE:** If you need more than one breadcrumbs on the same page you could to use namespaces.
-By default, breadcrumbs use `default` namespace, but you should to add more.
+> **NOTE:** If you need more than one set of breadcrumbs on the same page you can use namespaces.
+By default, breadcrumbs use the `default` namespace, but you can add more.
 To add breadcrumbs to your custom namespace use `addNamespaceItem` / `prependNamespaceItem`
 or `addNamespaceRouteItem` / `prependNamespaceRouteItem` methods respectively, for example:
 
@@ -171,6 +171,7 @@ or `addNamespaceRouteItem` / `prependNamespaceRouteItem` methods respectively, f
 public function yourAction(User $user)
 {
     $breadcrumbs = $this->get("white_october_breadcrumbs");
+
     // Simple example
     $breadcrumbs->prependNamespaceItem("subsection", "Home", $this->get("router")->generate("index"));
 
@@ -185,7 +186,7 @@ public function yourAction(User $user)
 }
 ```
 
-To render `subsection` breadcrumbs in your templates, specify this namespace in options:
+Then to render the `subsection` breadcrumbs in your templates, specify this namespace in the options:
 
 ``` jinja
 {{ wo_render_breadcrumbs({namespace: "subsection"}) }}
