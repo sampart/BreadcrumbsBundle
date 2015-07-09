@@ -10,7 +10,7 @@ Installation
     $ composer require whiteoctober/breadcrumbs-bundle
     ```
     
-    > **NOTE:** If you're not having installed `Composer` yet, check the [installation guide][2].
+    > **NOTE:** If you haven't installed `Composer` yet, check the [installation guide][2].
 
     > **NOTE:** If you're not using `Composer`, add the `BreadcrumbsBundle` to your autoloader manually.
 
@@ -35,7 +35,7 @@ Installation
     white_october_breadcrumbs: ~
     ```
     
-That's  it for basic configuration. For more options check [Configuration](#configuration) section.
+That's  it for basic configuration. For more options check the [Configuration](#configuration) section.
 
 Usage
 =====
