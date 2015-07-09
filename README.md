@@ -179,7 +179,7 @@ public function yourAction(User $user)
     $breadcrumbs->addNamespaceItem("subsection", "Some text without link");
 
     // Example with parameter injected into translation "user.profile"
-    $breadcrumbs->addNamespaceItem("subsection", $txt, $url, array("%user%" => $user->getName()));
+    $breadcrumbs->addNamespaceItem("subsection", $txt, $url, ["%user%" => $user->getName()]);
     
     // Example with route name with required parameters
     $breadcrumbs->addNamespaceRouteItem("subsection", $user->getName(), "user_show", ["id" => $user->getId()]);
