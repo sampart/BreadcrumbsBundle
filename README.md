@@ -53,7 +53,7 @@ public function yourAction(User $user)
     $breadcrumbs->addItem("Some text without link");
 
     // Example with parameter injected into translation "user.profile"
-    $breadcrumbs->addItem($txt, $url, array("%user%" => $user->getName()));
+    $breadcrumbs->addItem($txt, $url, ["%user%" => $user->getName()]);
 }
 ```
 
@@ -100,9 +100,9 @@ public function yourAction()
     $breadcrumbs->addRouteItem("Demo", "_demo");
 
     // Pass "_demo_hello" route name with parameters
-    $breadcrumbs->addRouteItem("Hello Breadcrumbs", "_demo_hello", array(
+    $breadcrumbs->addRouteItem("Hello Breadcrumbs", "_demo_hello", [
         'name' => 'Breadcrumbs',
-    ));
+    ]);
 
     // Add "homepage" route link to begin of breadcrumbs
     $breadcrumbs->prependRouteItem("Home", "homepage");
@@ -155,14 +155,14 @@ Example:
 ``` php
 $that = $this;
 $breadcrumbs->addObjectArray($selectedPath, "name", function($object) use ($that) {
-    return $that->generateUrl('_object_index', array('slug' => $object->getSlug()));
+    return $that->generateUrl('_object_index', ['slug' => $object->getSlug()]);
 });
 ```
 
 You can also add a tree path
 
 ``` php
-$breadcrumbs->addObjectTree($object, $text, $url = "", $parent = 'parent', array $translationParameters = array(), $firstPosition = -1)
+$breadcrumbs->addObjectTree($object, $text, $url = "", $parent = 'parent', array $translationParameters = [], $firstPosition = -1)
 ```
 
 ```
