@@ -47,15 +47,8 @@ class BreadcrumbsHelper extends Helper
     {
         $options = $this->resolveOptions($options);
 
-        // Check whether requested namespace breadcrumbs is exists
-        if (!isset($this->breadcrumbs[$options['namespace']])) {
-            throw new \InvalidArgumentException(sprintf(
-                'The breadcrumb namespace "%s" does not exist', $options['namespace']
-            ));
-        }
-
         // Assign namespace breadcrumbs
-        $options["breadcrumbs"] = $this->breadcrumbs[$options['namespace']];
+        $options["breadcrumbs"] = $this->breadcrumbs->getNamespaceBreadcrumbs($options['namespace']);
 
         return $this->templating->render(
             $options["viewTemplate"],

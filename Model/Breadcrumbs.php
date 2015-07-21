@@ -123,6 +123,18 @@ class Breadcrumbs implements \Iterator, \ArrayAccess, \Countable
         return $this;
     }
 
+    public function getNamespaceBreadcrumbs($namespace = self::DEFAULT_NAMESPACE)
+    {
+        // Check whether requested namespace breadcrumbs is exists
+        if (!isset($this->breadcrumbs[$namespace])) {
+            throw new \InvalidArgumentException(sprintf(
+                'The breadcrumb namespace "%s" does not exist', $namespace
+            ));
+        }
+
+        return $this->breadcrumbs[$namespace];
+    }
+
     /**
      * @param RouterInterface $router
      */
@@ -131,54 +143,54 @@ class Breadcrumbs implements \Iterator, \ArrayAccess, \Countable
         $this->router = $router;
     }
 
-    public function rewind()
+    public function rewind($namespace = self::DEFAULT_NAMESPACE)
     {
-        return reset($this->breadcrumbs);
+        return reset($this->breadcrumbs[$namespace]);
     }
 
-    public function current()
+    public function current($namespace = self::DEFAULT_NAMESPACE)
     {
-        return current($this->breadcrumbs);
+        return current($this->breadcrumbs[$namespace]);
     }
 
-    public function key()
+    public function key($namespace = self::DEFAULT_NAMESPACE)
     {
-        return key($this->breadcrumbs);
+        return key($this->breadcrumbs[$namespace]);
     }
 
-    public function next()
+    public function next($namespace = self::DEFAULT_NAMESPACE)
     {
-        return next($this->breadcrumbs);
+        return next($this->breadcrumbs[$namespace]);
     }
 
-    public function valid()
+    public function valid($namespace = self::DEFAULT_NAMESPACE)
     {
-        return key($this->breadcrumbs) !== null;
+        return null !== key($this->breadcrumbs[$namespace]);
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset, $namespace = self::DEFAULT_NAMESPACE)
     {
-        return isset($this->breadcrumbs[$offset]);
+        return isset($this->breadcrumbs[$namespace][$offset]);
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value, $namespace = self::DEFAULT_NAMESPACE)
     {
-        $this->breadcrumbs[$offset] = $value;
+        $this->breadcrumbs[$namespace][$offset] = $value;
     }
 
-    public function offsetGet($offset)
+    public function offsetGet($offset, $namespace = self::DEFAULT_NAMESPACE)
     {
-        return isset($this->breadcrumbs[$offset]) ? $this->breadcrumbs[$offset] : null;
+        return isset($this->breadcrumbs[$namespace][$offset]) ? $this->breadcrumbs[$namespace][$offset] : null;
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset($offset, $namespace = self::DEFAULT_NAMESPACE)
     {
-        unset($this->breadcrumbs[$offset]);
+        unset($this->breadcrumbs[$namespace][$offset]);
     }
 
-    public function count()
+    public function count($namespace = self::DEFAULT_NAMESPACE)
     {
-        return count($this->breadcrumbs);
+        return count($this->breadcrumbs[$namespace]);
     }
 
     private function validateArgument($object, $argument)
