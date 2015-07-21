@@ -3,6 +3,8 @@
 namespace WhiteOctober\BreadcrumbsBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Templating\Helper\Helper;
+use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 use WhiteOctober\BreadcrumbsBundle\Model\SingleBreadcrumb;
 
 /**
@@ -43,11 +45,12 @@ class BreadcrumbsExtension extends \Twig_Extension
     /**
      * Returns the breadcrumbs object
      *
+     * @param string $namespace
      * @return \WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs
      */
-    public function getBreadcrumbs()
+    public function getBreadcrumbs($namespace = Breadcrumbs::DEFAULT_NAMESPACE)
     {
-        return $this->breadcrumbs;
+        return $this->breadcrumbs->getNamespaceBreadcrumbs($namespace);
     }
 
     /**
@@ -65,11 +68,14 @@ class BreadcrumbsExtension extends \Twig_Extension
      * Checks if this breadcrumb is the last one in the collection
      *
      * @param  SingleBreadcrumb $crumb
-     * @return boolean
+     * @param string $namespace
+     * @return bool
      */
-    public function isLastBreadcrumb(SingleBreadcrumb $crumb)
+    public function isLastBreadcrumb(SingleBreadcrumb $crumb, $namespace = Breadcrumbs::DEFAULT_NAMESPACE)
     {
-        return ($this->breadcrumbs[count($this->breadcrumbs)-1] === $crumb);
+        $offset = $this->breadcrumbs->count($namespace) - 1;
+
+        return $crumb === $this->breadcrumbs->offsetGet($offset, $namespace);
     }
 
     /**
