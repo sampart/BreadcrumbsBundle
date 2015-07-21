@@ -22,15 +22,13 @@ class BreadcrumbsExtension extends \Twig_Extension
     }
 
     /**
-     * Returns a list of functions to add to the existing list.
-     *
-     * @return array An array of functions
+     * {@inheritdoc}
      */
     public function getFunctions()
     {
         return array(
-            "wo_breadcrumbs"  => new \Twig_Function_Method($this, "getBreadcrumbs", array("is_safe" => array("html"))),
-            "wo_render_breadcrumbs" => new \Twig_Function_Method($this, "renderBreadcrumbs", array("is_safe" => array("html"))),
+            new \Twig_SimpleFunction("wo_breadcrumbs", array($this, "getBreadcrumbs"), array("is_safe" => array("html"))),
+            new \Twig_SimpleFunction("wo_render_breadcrumbs", array($this, "renderBreadcrumbs"), array("is_safe" => array("html"))),
         );
     }
 
@@ -40,7 +38,7 @@ class BreadcrumbsExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            "wo_is_final_breadcrumb" => new \Twig_Filter_Method($this, "isLastBreadcrumb"),
+            new \Twig_SimpleFilter("wo_is_final_breadcrumb", array($this, "isLastBreadcrumb")),
         );
     }
 
@@ -81,9 +79,7 @@ class BreadcrumbsExtension extends \Twig_Extension
     }
 
     /**
-     * Returns the name of the extension.
-     *
-     * @return string The extension name
+     * {@inheritdoc}
      */
     public function getName()
     {
