@@ -126,13 +126,22 @@ class Breadcrumbs implements \Iterator, \ArrayAccess, \Countable
     public function getNamespaceBreadcrumbs($namespace = self::DEFAULT_NAMESPACE)
     {
         // Check whether requested namespace breadcrumbs is exists
-        if (!isset($this->breadcrumbs[$namespace])) {
+        if (!$this->hasNamespaceBreadcrumbs($namespace)) {
             throw new \InvalidArgumentException(sprintf(
                 'The breadcrumb namespace "%s" does not exist', $namespace
             ));
         }
 
         return $this->breadcrumbs[$namespace];
+    }
+
+    /**
+     * @param string $namespace
+     * @return bool
+     */
+    public function hasNamespaceBreadcrumbs($namespace = self::DEFAULT_NAMESPACE)
+    {
+        return isset($this->breadcrumbs[$namespace]);
     }
 
     /**

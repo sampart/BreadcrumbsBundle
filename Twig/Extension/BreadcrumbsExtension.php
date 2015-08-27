@@ -28,6 +28,7 @@ class BreadcrumbsExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFunction("wo_breadcrumbs", array($this, "getBreadcrumbs")),
+            new \Twig_SimpleFunction("wo_breadcrumbs_exists", array($this, "hasBreadcrumbs")),
             new \Twig_SimpleFunction("wo_render_breadcrumbs", array($this, "renderBreadcrumbs"), array("is_safe" => array("html"))),
         );
     }
@@ -51,6 +52,15 @@ class BreadcrumbsExtension extends \Twig_Extension
     public function getBreadcrumbs($namespace = Breadcrumbs::DEFAULT_NAMESPACE)
     {
         return $this->breadcrumbs->getNamespaceBreadcrumbs($namespace);
+    }
+
+    /**
+     * @param string $namespace
+     * @return bool
+     */
+    public function hasBreadcrumbs($namespace = Breadcrumbs::DEFAULT_NAMESPACE)
+    {
+        return $this->breadcrumbs->hasNamespaceBreadcrumbs($namespace);
     }
 
     /**
