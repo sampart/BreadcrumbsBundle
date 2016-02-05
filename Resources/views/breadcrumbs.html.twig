@@ -1,6 +1,6 @@
 {% if wo_breadcrumbs()|length %}
     {%- spaceless -%}
-        <ul id="{{ listId }}" class="{{ listClass }}" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+        <ol id="{{ listId }}" class="{{ listClass }}" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
             {% for b in breadcrumbs %}
                 <li{% if itemClass is defined and itemClass|length %} class="{{ itemClass }}"{% endif %}{% if not(loop.first) %} itemprop="child"{% endif %}>
                     {% if b.url and not loop.last %}
@@ -16,6 +16,6 @@
                     {% endif %}
                 </li>
             {% endfor %}
-        </ul>
+        </ol>
     {%- endspaceless -%}
 {% endif %}
