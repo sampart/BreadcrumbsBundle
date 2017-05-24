@@ -46,6 +46,7 @@ In your application controller methods:
 public function yourAction(User $user)
 {
     $breadcrumbs = $this->get("white_october_breadcrumbs");
+    
     // Simple example
     $breadcrumbs->addItem("Home", $this->get("router")->generate("index"));
 
@@ -99,12 +100,12 @@ public function yourAction()
     // Pass "_demo" route name without any parameters
     $breadcrumbs->addRouteItem("Demo", "_demo");
 
-    // Pass "_demo_hello" route name with parameters
+    // Pass "_demo_hello" route name with route parameters
     $breadcrumbs->addRouteItem("Hello Breadcrumbs", "_demo_hello", [
         'name' => 'Breadcrumbs',
     ]);
 
-    // Add "homepage" route link to begin of breadcrumbs
+    // Add "homepage" route link at the start of the breadcrumbs
     $breadcrumbs->prependRouteItem("Home", "homepage");
 }
 ```
@@ -209,7 +210,7 @@ for work with multiple breadcrumbs on the same page.
 Overriding the template
 =======================
 
-There are two methods of doing this.
+There are two methods for doing this.
 
 1. You can override the template used by copying the
     `Resources/views/breadcrumbs.html.twig` file out of the bundle and placing it
