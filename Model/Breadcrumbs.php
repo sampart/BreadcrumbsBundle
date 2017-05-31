@@ -17,62 +17,62 @@ class Breadcrumbs implements \Iterator, \ArrayAccess, \Countable
      */
     private $router;
 
-    public function addItem($text, $url = "", array $translationParameters = array())
+    public function addItem($text, $url = "", array $translationParameters = array(), $translate = true)
     {
-        return $this->addNamespaceItem(self::DEFAULT_NAMESPACE, $text, $url, $translationParameters);
+        return $this->addNamespaceItem(self::DEFAULT_NAMESPACE, $text, $url, $translationParameters, $translate);
     }
 
-    public function addNamespaceItem($namespace, $text, $url = "", array $translationParameters = array())
+    public function addNamespaceItem($namespace, $text, $url = "", array $translationParameters = array(), $translate = true)
     {
-        $b = new SingleBreadcrumb($text, $url, $translationParameters);
+        $b = new SingleBreadcrumb($text, $url, $translationParameters, $translate);
         $this->breadcrumbs[$namespace][] = $b;
 
         return $this;
     }
 
-    public function prependItem($text, $url = "", array $translationParameters = array())
+    public function prependItem($text, $url = "", array $translationParameters = array(), $translate = true)
     {
-        return $this->prependNamespaceItem(self::DEFAULT_NAMESPACE, $text, $url, $translationParameters);
+        return $this->prependNamespaceItem(self::DEFAULT_NAMESPACE, $text, $url, $translationParameters, $translate);
     }
 
-    public function prependNamespaceItem($namespace, $text, $url = "", array $translationParameters = array())
+    public function prependNamespaceItem($namespace, $text, $url = "", array $translationParameters = array(), $translate = true)
     {
-        $b = new SingleBreadcrumb($text, $url, $translationParameters);
+        $b = new SingleBreadcrumb($text, $url, $translationParameters, $translate);
         array_unshift($this->breadcrumbs[$namespace], $b);
 
         return $this;
     }
 
-    public function addRouteItem($text, $route, array $parameters = array(), $referenceType = RouterInterface::ABSOLUTE_PATH, array $translationParameters = array())
+    public function addRouteItem($text, $route, array $parameters = array(), $referenceType = RouterInterface::ABSOLUTE_PATH, array $translationParameters = array(), $translate = true)
     {
-        return $this->addNamespaceRouteItem(self::DEFAULT_NAMESPACE, $text, $route, $parameters, $referenceType, $translationParameters);
+        return $this->addNamespaceRouteItem(self::DEFAULT_NAMESPACE, $text, $route, $parameters, $referenceType, $translationParameters, $translate);
     }
 
-    public function addNamespaceRouteItem($namespace, $text, $route, array $parameters = array(), $referenceType = RouterInterface::ABSOLUTE_PATH, array $translationParameters = array())
-    {
-        $url = $this->router->generate($route, $parameters, $referenceType);
-
-        return $this->addNamespaceItem($namespace, $text, $url, $translationParameters);
-    }
-
-    public function prependRouteItem($text, $route, array $parameters = array(), $referenceType = RouterInterface::ABSOLUTE_PATH, array $translationParameters = array())
-    {
-        return $this->prependNamespaceRouteItem(self::DEFAULT_NAMESPACE, $text, $route, $parameters, $referenceType, $translationParameters);
-    }
-
-    public function prependNamespaceRouteItem($namespace, $text, $route, array $parameters = array(), $referenceType = RouterInterface::ABSOLUTE_PATH, array $translationParameters = array())
+    public function addNamespaceRouteItem($namespace, $text, $route, array $parameters = array(), $referenceType = RouterInterface::ABSOLUTE_PATH, array $translationParameters = array(), $translate = true)
     {
         $url = $this->router->generate($route, $parameters, $referenceType);
 
-        return $this->prependNamespaceItem($namespace, $text, $url, $translationParameters);
+        return $this->addNamespaceItem($namespace, $text, $url, $translationParameters, $translate);
     }
 
-    public function addObjectArray(array $objects, $text, $url = "", array $translationParameters = array())
+    public function prependRouteItem($text, $route, array $parameters = array(), $referenceType = RouterInterface::ABSOLUTE_PATH, array $translationParameters = array(), $translate = true)
     {
-        return $this->addNamespaceObjectArray(self::DEFAULT_NAMESPACE, $objects, $text, $url, $translationParameters);
+        return $this->prependNamespaceRouteItem(self::DEFAULT_NAMESPACE, $text, $route, $parameters, $referenceType, $translationParameters, $translate);
     }
 
-    public function addNamespaceObjectArray($namespace, array $objects, $text, $url = "", array $translationParameters = array())
+    public function prependNamespaceRouteItem($namespace, $text, $route, array $parameters = array(), $referenceType = RouterInterface::ABSOLUTE_PATH, array $translationParameters = array(), $translate = true)
+    {
+        $url = $this->router->generate($route, $parameters, $referenceType);
+
+        return $this->prependNamespaceItem($namespace, $text, $url, $translationParameters, $translate);
+    }
+
+    public function addObjectArray(array $objects, $text, $url = "", array $translationParameters = array(), $translate = true)
+    {
+        return $this->addNamespaceObjectArray(self::DEFAULT_NAMESPACE, $objects, $text, $url, $translationParameters, $translate);
+    }
+
+    public function addNamespaceObjectArray($namespace, array $objects, $text, $url = "", array $translationParameters = array(), $translate = true)
     {
         foreach($objects as $object) {
             $itemText = $this->validateArgument($object, $text);
@@ -81,7 +81,7 @@ class Breadcrumbs implements \Iterator, \ArrayAccess, \Countable
             } else {
                 $itemUrl = "";
             }
-            $this->addNamespaceItem($namespace, $itemText, $itemUrl, $translationParameters);
+            $this->addNamespaceItem($namespace, $itemText, $itemUrl, $translationParameters, $translate);
         }
 
         return $this;
