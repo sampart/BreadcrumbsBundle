@@ -13,7 +13,7 @@
                         "item":
                         {
                             "@id": "{{ b.url }}",
-                            "name": "{{- b.text | trans(b.translationParameters, translation_domain, locale) -}}"
+                            "name": "{% if b.translate is defined and b.translate == true %}{{- b.text | trans(b.translationParameters, translation_domain, locale) -}}{% else %}{{- b.text -}}{% endif %}"
                         }
                     }{% if not loop.last %},{% endif %}
                 {% endfor %}
