@@ -224,8 +224,8 @@ There are two methods for doing this.
     {{ wo_render_breadcrumbs({ viewTemplate: "YourOwnBundle::yourBreadcrumbs.html.twig" }) }}
     ```
 > **NOTE:** If you want to use the JSON-LD format, there's already an existing template 
-at `WhiteOctoberBreadcrumbsBundle::json-ld.html.twig`. Just set this template in `viewTemplate` as
-mentioned above (Step 2).
+at `WhiteOctoberBreadcrumbsBundle::json-ld.html.twig`. Just set this template as the value for 
+`viewTemplate` either in your Twig function call (see Step 2 above) or in your bundle [configuration](#configuration).
 
 
 
