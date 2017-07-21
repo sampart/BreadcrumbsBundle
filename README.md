@@ -126,7 +126,7 @@ white_october_breadcrumbs:
     linkRel:            ''
     locale:             ~ # defaults to null, so the default locale is used
     translation_domain: ~ # defaults to null, so the default domain is used
-    viewTemplate:       'WhiteOctoberBreadcrumbsBundle::breadcrumbs.html.twig'
+    viewTemplate:       'WhiteOctoberBreadcrumbsBundle::microdata.html.twig'
 ```
 
 These can also be passed as parameters in the view when rendering the
@@ -213,7 +213,7 @@ Overriding the template
 There are two methods for doing this.
 
 1. You can override the template used by copying the
-    `Resources/views/breadcrumbs.html.twig` file out of the bundle and placing it
+    `Resources/views/microdata.html.twig` file out of the bundle and placing it
     into `app/Resources/WhiteOctoberBreadcrumbsBundle/views`, then customising
     as you see fit. Check the [Overriding bundle templates][1] documentation section
     for more information.
@@ -223,6 +223,10 @@ There are two methods for doing this.
     ``` jinja
     {{ wo_render_breadcrumbs({ viewTemplate: "YourOwnBundle::yourBreadcrumbs.html.twig" }) }}
     ```
+> **NOTE:** If you want to use the JSON-LD format, there's already an existing template 
+at `WhiteOctoberBreadcrumbsBundle::json-ld.html.twig`. Just set this template as the value for 
+`viewTemplate` either in your Twig function call (see Step 2 above) or in your bundle [configuration](#configuration).
+
 
 
 [1]: http://symfony.com/doc/current/book/templating.html#overriding-bundle-templates
