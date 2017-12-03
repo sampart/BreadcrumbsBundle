@@ -6,14 +6,14 @@
     <services>
 
         <!-- Our service, for controllers -->
-        <service id="white_october_breadcrumbs" class="WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs">
+        <service id="white_october_breadcrumbs" class="WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs" public="true">
             <call method="setRouter">
                 <argument type="service" id="router" />
             </call>
         </service>
 
         <!-- Templating helper -->
-        <service id="white_october_breadcrumbs.helper" class="WhiteOctober\BreadcrumbsBundle\Templating\Helper\BreadcrumbsHelper">
+        <service id="white_october_breadcrumbs.helper" class="WhiteOctober\BreadcrumbsBundle\Templating\Helper\BreadcrumbsHelper" public="true">
             <argument type="service" id="templating" />
             <argument type="service" id="white_october_breadcrumbs" />
             <argument>%white_october_breadcrumbs.options%</argument>
@@ -21,7 +21,7 @@
         </service>
 
         <!-- Twig extension -->
-        <service id="white_october_breadcrumbs.twig" class="WhiteOctober\BreadcrumbsBundle\Twig\Extension\BreadcrumbsExtension">
+        <service id="white_october_breadcrumbs.twig" class="WhiteOctober\BreadcrumbsBundle\Twig\Extension\BreadcrumbsExtension" public="true">
           <argument type="service" id="service_container" />
           <tag name="twig.extension" />
         </service>
