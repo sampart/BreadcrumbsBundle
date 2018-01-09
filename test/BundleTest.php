@@ -1,7 +1,5 @@
 <?php
 use Nyholm\BundleTest\BaseBundleTestCase;
-use Acme\AcmeFooBundle;
-use Acme\Service\Foo;
 
 class BundleTest extends BaseBundleTestCase
 
