@@ -11,9 +11,7 @@ php:
 
 matrix:
   include:
-    # PHP 5.3 doesn't install on Trusty on Travis: https://github.com/travis-ci/travis-ci/issues/8219
     - php: 5.3
-      dist: precise
     # Force testing against LTS versions
     - php: 5.6
       env: SYMFONY_VERSION=2.3.*
@@ -24,9 +22,7 @@ matrix:
     - php: 5.6
       env: SYMFONY_VERSION=3.0.*
     - php: 7.1
-      env:
-        - SYMFONY_VERSION="4.0.*"
-        - STABILITY=beta
+      env: SYMFONY_VERSION="4.0.*"
 
 sudo: false
 
