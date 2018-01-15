@@ -3,7 +3,6 @@
 namespace WhiteOctober\BreadcrumbsBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Templating\Helper\Helper;
 use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 use WhiteOctober\BreadcrumbsBundle\Model\SingleBreadcrumb;
 

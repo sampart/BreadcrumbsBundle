@@ -46,6 +46,7 @@ In your application controller methods:
 public function yourAction(User $user)
 {
     $breadcrumbs = $this->get("white_october_breadcrumbs");
+    
     // Simple example
     $breadcrumbs->addItem("Home", $this->get("router")->generate("index"));
 
@@ -99,12 +100,12 @@ public function yourAction()
     // Pass "_demo" route name without any parameters
     $breadcrumbs->addRouteItem("Demo", "_demo");
 
-    // Pass "_demo_hello" route name with parameters
+    // Pass "_demo_hello" route name with route parameters
     $breadcrumbs->addRouteItem("Hello Breadcrumbs", "_demo_hello", [
         'name' => 'Breadcrumbs',
     ]);
 
-    // Add "homepage" route link to begin of breadcrumbs
+    // Add "homepage" route link at the start of the breadcrumbs
     $breadcrumbs->prependRouteItem("Home", "homepage");
 }
 ```
@@ -125,7 +126,7 @@ white_october_breadcrumbs:
     linkRel:            ''
     locale:             ~ # defaults to null, so the default locale is used
     translation_domain: ~ # defaults to null, so the default domain is used
-    viewTemplate:       'WhiteOctoberBreadcrumbsBundle::breadcrumbs.html.twig'
+    viewTemplate:       'WhiteOctoberBreadcrumbsBundle::microdata.html.twig'
 ```
 
 These can also be passed as parameters in the view when rendering the
@@ -209,10 +210,10 @@ for work with multiple breadcrumbs on the same page.
 Overriding the template
 =======================
 
-There are two methods of doing this.
+There are two methods for doing this.
 
 1. You can override the template used by copying the
-    `Resources/views/breadcrumbs.html.twig` file out of the bundle and placing it
+    `Resources/views/microdata.html.twig` file out of the bundle and placing it
     into `app/Resources/WhiteOctoberBreadcrumbsBundle/views`, then customising
     as you see fit. Check the [Overriding bundle templates][1] documentation section
     for more information.
@@ -222,7 +223,21 @@ There are two methods of doing this.
     ``` jinja
     {{ wo_render_breadcrumbs({ viewTemplate: "YourOwnBundle::yourBreadcrumbs.html.twig" }) }}
     ```
+> **NOTE:** If you want to use the JSON-LD format, there's already an existing template 
+at `WhiteOctoberBreadcrumbsBundle::json-ld.html.twig`. Just set this template as the value for 
+`viewTemplate` either in your Twig function call (see Step 2 above) or in your bundle [configuration](#configuration).
+
 
 
 [1]: http://symfony.com/doc/current/book/templating.html#overriding-bundle-templates
 [2]: https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx
+
+Contributing
+============
+
+We welcome contributions to this project, including pull requests and issues (and discussions on existing issues).
+
+If you'd like to contribute code but aren't sure what, the [issues list](https://github.com/whiteoctober/breadcrumbsbundle/issues) is a good place to start.
+If you're a first-time code contributor, you may find Github's guide to [forking projects](https://guides.github.com/activities/forking/) helpful.
+
+All contributors (whether contributing code, involved in issue discussions, or involved in any other way) must abide by our [code of conduct](https://github.com/whiteoctober/open-source-code-of-conduct/blob/master/code_of_conduct.md).

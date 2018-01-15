@@ -1,0 +1,24 @@
+{% if wo_breadcrumbs()|length %}
+    {%- spaceless -%}
+        <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement":
+            [
+                {% for b in breadcrumbs %}
+                    {
+                        "@type": "ListItem",
+                        "position": {{ loop.index }},
+                        "item":
+                        {
+                            "@id": "{{ b.url }}",
+                            "name": "{% if b.translate is defined and b.translate == true %}{{- b.text | trans(b.translationParameters, translation_domain, locale) -}}{% else %}{{- b.text -}}{% endif %}"
+                        }
+                    }{% if not loop.last %},{% endif %}
+                {% endfor %}
+            ]
+        }
+        </script>
+    {%- endspaceless -%}
+{% endif %}
