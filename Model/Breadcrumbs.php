@@ -92,7 +92,9 @@ class Breadcrumbs implements \Iterator, \ArrayAccess, \Countable
         if (strlen($namespace)) {
             $this->breadcrumbs[$namespace] = array();
         } else {
-            $this->breadcrumbs = array();
+            $this->breadcrumbs = array(
+                self::DEFAULT_NAMESPACE => array()
+            );
         }
 
         return $this;
