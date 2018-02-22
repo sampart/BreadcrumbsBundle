@@ -6,6 +6,10 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 
+/**
+ * Class AppKernel
+ * It is needed to simulate an application to make some functional tests
+ */
 class AppKernel extends Kernel
 {
     /**
