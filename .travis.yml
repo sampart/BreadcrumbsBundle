@@ -1,0 +1,37 @@
+language: php
+
+dist: trusty
+
+php:
+  - 7.0
+  - 7.1
+  - 7.2
+  - master
+
+matrix:
+  include:
+    - php: 7.1
+      env: SYMFONY_VERSION=2.3.*
+    - php: 7.1
+      env: SYMFONY_VERSION=2.7.*
+    - php: 7.1
+      env: SYMFONY_VERSION=2.8.*
+    - php: 7.1
+      env: SYMFONY_VERSION=3.0.*
+    - php: 7.1
+      env: SYMFONY_VERSION="4.0.*"
+
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+before_install:
+  - composer self-update
+  - if [ "$SYMFONY_VERSION" != "" ]; then composer require --dev --no-update symfony/symfony=$SYMFONY_VERSION; fi
+  - INI_FILE=~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini;
+  - echo memory_limit = -1 >> $INI_FILE
+
+install:
+  - composer install
