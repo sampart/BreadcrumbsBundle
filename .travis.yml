@@ -29,7 +29,6 @@ cache:
 
 before_install:
   - composer self-update
-  - if [ "$DEPENDENCIES" = "beta" ]; then composer config minimum-stability beta; fi;
   - if [ "$SYMFONY_VERSION" != "" ]; then composer require --dev --no-update symfony/symfony=$SYMFONY_VERSION; fi
   - INI_FILE=~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini;
   - echo memory_limit = -1 >> $INI_FILE
