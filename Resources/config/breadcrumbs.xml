@@ -6,12 +6,12 @@
     <services>
 
         <!-- Our service, for controllers -->
-        <service id="WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs" class="WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs" public="true">
+        <service id="WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs" class="WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs" public="false">
             <call method="setRouter">
                 <argument type="service" id="router" />
             </call>
         </service>
-        <service id="white_october_breadcrumbs" alias="WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs">
+        <service id="white_october_breadcrumbs" alias="WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs" public="true">
         </service>
 
         <!-- Templating helper -->
