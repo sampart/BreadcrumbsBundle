@@ -35,7 +35,16 @@ Installation
     white_october_breadcrumbs: ~
     ```
     
-That's  it for basic configuration. For more options check the [Configuration](#configuration) section.
+4. Configure templating for your application if you haven't already.  For example:
+
+    ```yaml
+    # app/config/config.yml (Symfony <=3)
+    # config/packages/framework.yaml (Symfony 4)
+    templating:
+        engines: ['twig']
+    ```
+    
+That's it for basic configuration. For more options check the [Configuration](#configuration) section.
 
 Usage
 =====
