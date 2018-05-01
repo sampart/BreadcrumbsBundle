@@ -10,6 +10,7 @@
             <call method="setRouter">
                 <argument type="service" id="router" />
             </call>
+            <tag name="kernel.reset" method="clear" />
         </service>
 
         <!-- Templating helper -->
