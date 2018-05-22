@@ -39,6 +39,10 @@ Installation
 
     ```yaml
     # app/config/config.yml (Symfony <=3)
+    framework:
+        templating:
+            engines: ['twig']
+    
     # config/packages/framework.yaml (Symfony 4)
     templating:
         engines: ['twig']
