@@ -9,6 +9,8 @@
                         <span itemprop="name">{% if b.translate is defined and b.translate == true %}{{- b.text | trans(b.translationParameters, translation_domain, locale) -}}{% else %}{{- b.text -}}{% endif %}</span>
                         {% if b.url and not loop.last %}
                     </a>
+                    {% elseif b.url %}
+                        <meta itemprop="item" content="{{ b.url }}" />
                     {% endif %}
                     <meta itemprop="position" content="{{ loop.index }}" />
 
