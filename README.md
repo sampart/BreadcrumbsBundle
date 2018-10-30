@@ -6,8 +6,8 @@ Installation
 1. Download this bundle to your project first. The preferred way to do it is
     to use [Composer](https://getcomposer.org/) package manager:
     
-    ``` json
-    $ composer require whiteoctober/breadcrumbs-bundle
+    ``` bash
+    composer require whiteoctober/breadcrumbs-bundle
     ```
     
     > **NOTE:** If you haven't installed `Composer` yet, check the [installation guide][2].
