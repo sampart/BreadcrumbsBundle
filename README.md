@@ -3,13 +3,26 @@ Installation
 
 > **NOTE:** The bundle is compatible with Symfony `2.0` upwards.
 
-1. Install this bundle using [Composer](https://getcomposer.org/):
+1. Configure templating for your application if you haven't already.  For example:
+
+    ```yaml
+    # app/config/config.yml (Symfony <=3)
+    framework:
+        templating:
+            engines: ['twig']
+    
+    # config/packages/framework.yaml (Symfony 4)
+    templating:
+        engines: ['twig']
+    ```
+
+2. Install this bundle using [Composer](https://getcomposer.org/):
     
     ``` bash
     composer require whiteoctober/breadcrumbs-bundle
     ```
     
-2. Add this bundle to your application's kernel:
+3. Add this bundle to your application's kernel:
     
     ``` php
     // app/AppKernel.php
@@ -23,26 +36,13 @@ Installation
     }
     ```
 
-3. Configure the bundle in your config:
+4. Configure the bundle in your config:
     
     ``` yaml
     # app/config/config.yml
     white_october_breadcrumbs: ~
     ```
-    
-4. Configure templating for your application if you haven't already.  For example:
-
-    ```yaml
-    # app/config/config.yml (Symfony <=3)
-    framework:
-        templating:
-            engines: ['twig']
-    
-    # config/packages/framework.yaml (Symfony 4)
-    templating:
-        engines: ['twig']
-    ```
-    
+  
 That's it for basic configuration. For more options check the [Configuration](#configuration) section.
 
 Usage
