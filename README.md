@@ -1,20 +1,26 @@
 Installation
 ============
 
-> **NOTE:** The bundle is compatible with Symfony `2.0` upwards.
+1. Configure templating for your application if you haven't already.  For example:
 
-1. Download this bundle to your project first. The preferred way to do it is
-    to use [Composer](https://getcomposer.org/) package manager:
+    ```yaml
+    # app/config/config.yml (Symfony <=3)
+    framework:
+        templating:
+            engines: ['twig']
+    
+    # config/packages/framework.yaml (Symfony 4)
+    templating:
+        engines: ['twig']
+    ```
+
+2. Install this bundle using [Composer](https://getcomposer.org/):
     
     ``` bash
     composer require whiteoctober/breadcrumbs-bundle
     ```
     
-    > **NOTE:** If you haven't installed `Composer` yet, check the [installation guide][2].
-
-    > **NOTE:** If you're not using `Composer`, add the `BreadcrumbsBundle` to your autoloader manually.
-
-2. Add this bundle to your application's kernel:
+3. Add this bundle to your application's kernel:
     
     ``` php
     // app/AppKernel.php
@@ -27,27 +33,16 @@ Installation
         );
     }
     ```
+    
+    If you're using Symfony 4, this step will be done for you by Symfony Flex.
 
-3. Configure the bundle in your config:
+4. Configure the bundle in your config:
     
     ``` yaml
     # app/config/config.yml
     white_october_breadcrumbs: ~
     ```
-    
-4. Configure templating for your application if you haven't already.  For example:
-
-    ```yaml
-    # app/config/config.yml (Symfony <=3)
-    framework:
-        templating:
-            engines: ['twig']
-    
-    # config/packages/framework.yaml (Symfony 4)
-    templating:
-        engines: ['twig']
-    ```
-    
+  
 That's it for basic configuration. For more options check the [Configuration](#configuration) section.
 
 Usage
@@ -71,7 +66,23 @@ public function yourAction(User $user)
 }
 ```
 
-and then in your template:
+For Symfony 4, don't retrieve the service via `get`, instead use
+[dependency injection](https://symfony.com/doc/current/service_container.html#fetching-and-using-services):
+                                                              
+```php
+use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
+
+class YourController extends AbstractController
+{
+    public function yourAction(Breadcrumbs $breadcrumbs)
+    {
+      // ...
+    }
+}
+```
+ 
+
+Then, in your template:
 
 ``` jinja
 {{ wo_render_breadcrumbs() }}
