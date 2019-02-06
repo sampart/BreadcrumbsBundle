@@ -35,6 +35,8 @@ Installation
         );
     }
     ```
+    
+    If you're using Symfony 4, this step will be done for you by Symfony Flex.
 
 4. Configure the bundle in your config:
     
