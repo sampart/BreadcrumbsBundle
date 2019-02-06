@@ -68,7 +68,23 @@ public function yourAction(User $user)
 }
 ```
 
-and then in your template:
+For Symfony 4, don't retrieve the service via `get`, instead use
+[dependency injection](https://symfony.com/doc/current/service_container.html#fetching-and-using-services):
+                                                              
+```php
+use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
+
+class YourController extends AbstractController
+{
+    public function yourAction(Breadcrumbs $breadcrumbs)
+    {
+      // ...
+    }
+}
+```
+ 
+
+Then, in your template:
 
 ``` jinja
 {{ wo_render_breadcrumbs() }}
