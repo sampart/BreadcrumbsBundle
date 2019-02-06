@@ -1,8 +1,6 @@
 Installation
 ============
 
-> **NOTE:** The bundle is compatible with Symfony `2.0` upwards.
-
 1. Configure templating for your application if you haven't already.  For example:
 
     ```yaml
