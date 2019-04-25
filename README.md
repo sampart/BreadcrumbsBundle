@@ -1,3 +1,5 @@
+_This project is looking for maintainers - [details here](https://github.com/whiteoctober/BreadcrumbsBundle/issues/106)._
+
 Installation
 ============
 
