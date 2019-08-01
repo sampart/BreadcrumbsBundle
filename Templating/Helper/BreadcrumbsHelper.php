@@ -3,13 +3,13 @@
 namespace WhiteOctober\BreadcrumbsBundle\Templating\Helper;
 
 use Symfony\Component\Templating\Helper\Helper;
-use Symfony\Component\Templating\EngineInterface;
+use Twig\Environment;
 use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 
 class BreadcrumbsHelper extends Helper
 {
     /**
-     * @var EngineInterface
+     * @var Environment
      */
     protected $templating;
 
@@ -24,11 +24,11 @@ class BreadcrumbsHelper extends Helper
     protected $options = array();
 
     /**
-     * @param \Symfony\Component\Templating\EngineInterface $templating
+     * @param \Twig\Environment $templating
      * @param \WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs $breadcrumbs
      * @param array $options The default options load from config file
      */
-    public function __construct(EngineInterface $templating, Breadcrumbs $breadcrumbs, array $options)
+    public function __construct(Environment $templating, Breadcrumbs $breadcrumbs, array $options)
     {
         $this->templating  = $templating;
         $this->breadcrumbs = $breadcrumbs;
