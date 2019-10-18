@@ -1,5 +1,5 @@
 {% if wo_breadcrumbs()|length %}
-    {%- spaceless -%}
+    {% apply spaceless %}
         <script type="application/ld+json">
         {
             "@context": "http://schema.org",
@@ -20,5 +20,5 @@
             ]
         }
         </script>
-    {%- endspaceless -%}
+    {% endapply %}
 {% endif %}
