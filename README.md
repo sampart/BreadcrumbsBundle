@@ -1,5 +1,5 @@
-This project is no longer maintained.
-If you are using it with Symfony >= 4.3, you may want to use [this fork](https://github.com/mhujer/BreadcrumbsBundle) instead.
+> WARNING: This project is **no longer maintained**.
+> If you are using it with Symfony >= 4.3, you may want to use [this fork](https://github.com/mhujer/BreadcrumbsBundle) instead.
 
 Installation
 ============
