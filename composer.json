@@ -20,6 +20,7 @@
         "phpunit/phpunit": "^6.4",
         "symfony/browser-kit": "~2.7|~3.0|^4.0"
     },
+    "abandoned": "mhujer/breadcrumbs-bundle",
     "autoload": {
         "psr-0": { "WhiteOctober\\BreadcrumbsBundle": "" }
     },
