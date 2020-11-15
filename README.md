@@ -259,12 +259,5 @@ at `WhiteOctoberBreadcrumbsBundle::json-ld.html.twig`. Just set this template as
 [1]: http://symfony.com/doc/current/book/templating.html#overriding-bundle-templates
 [2]: https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx
 
-Contributing
-============
 
-We welcome contributions to this project, including pull requests and issues (and discussions on existing issues).
-
-If you'd like to contribute code but aren't sure what, the [issues list](https://github.com/whiteoctober/breadcrumbsbundle/issues) is a good place to start.
-If you're a first-time code contributor, you may find Github's guide to [forking projects](https://guides.github.com/activities/forking/) helpful.
-
-All contributors (whether contributing code, involved in issue discussions, or involved in any other way) must abide by our [code of conduct](https://github.com/whiteoctober/open-source-code-of-conduct/blob/master/code_of_conduct.md).
+_(This project was originally at https://github.com/whiteoctober/BreadcrumbsBundle)_
